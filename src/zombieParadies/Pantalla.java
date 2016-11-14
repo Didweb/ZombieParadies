@@ -4,6 +4,7 @@ package zombieParadies;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+import developer.developer;
 
 
 
@@ -33,12 +34,23 @@ public class Pantalla extends JPanel {
 
 	public void paint(Graphics g){
 		
+		// Mostrar alertas de dev
+		mostrarDev(g);
 		
 	}
 
 
 	
-	
+	private void mostrarDev(Graphics g){
+		
+		
+		
+		String[] arg={
+					"Nivel: "+Juego.getJuegoNivel(),
+					"Superado: "+Juego.isJuegoNivelSuperado()
+					};
+		developer.sacaDato(g,arg);
+	}
 	
 	
 	

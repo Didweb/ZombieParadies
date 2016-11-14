@@ -2,16 +2,12 @@ package zombieParadies;
 
 
 
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
 import zombieParadies.Pantalla;
 import controls.Controles;
-
+import factoryTile.RecMapa;
 
 
 
@@ -19,13 +15,18 @@ import controls.Controles;
 public class Juego  extends JFrame implements Runnable{
  
 	/**
-	* Centro del Juego creacion de loop del juego.
+	* Centro del Juego creación de loop del juego.
     */
     private static final long serialVersionUID = 2997131868080903015L;
     
 	private static boolean juegoActivo = false;
-
+	private static int juegoNivel;
+	private static boolean juegoNivelSuperado = false;
 	
+	public static final int ANCHO_PANTALLA = 1400;
+	public static final int ALTO_PANTALLA = 1250;
+
+
 	private static Thread thread;
 
 	private static String  CONTADOR_APS = "";
@@ -62,15 +63,20 @@ public class Juego  extends JFrame implements Runnable{
 	private synchronized void iniciar(){
 		
 		juegoActivo = true;
-		
+		juegoNivel = 1;
+		RecMapa.DataPlanos(juegoNivel);
 
 		thread = new Thread(this, "Graficos");
 		thread.start();
 	}
 	
 
-	
+
+
+
 	private void actualizar(){		
+		
+		
 		
 		aps ++;
 	}
@@ -127,6 +133,32 @@ public class Juego  extends JFrame implements Runnable{
 		
 	}
 
+	
+	
+	
+	public static boolean isJuegoNivelSuperado() {
+		return juegoNivelSuperado;
+	}
+
+
+
+	public static void setJuegoNivelSuperado(boolean juegoNivelSuperado) {
+		Juego.juegoNivelSuperado = juegoNivelSuperado;
+	}	
+	
+
+	
+	
+	public static int getJuegoNivel() {
+		return juegoNivel;
+	}
+
+
+
+	public static void setJuegoNivel(int juegoNivel) {
+		Juego.juegoNivel = juegoNivel;
+	}	
+	
 	public static void main(String[] args)  {
 		
 	    

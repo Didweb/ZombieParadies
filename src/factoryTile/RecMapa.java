@@ -1,13 +1,11 @@
 package factoryTile;
 
-import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
+
+
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
+
 
 import javax.imageio.ImageIO;
 
@@ -36,15 +34,15 @@ public class RecMapa {
 	
 	public final static int ANCHO_TILE = 64;
 	
-	public static int AnchoPantalla;
-	public static int AltoPantalla;
+	public static int AnchoPantallaMap;
+	public static int AltoPantallaMap;
 	
 	
 	
 	
-	public static void DataPlanos(){
+	public static void DataPlanos(int nivel){
 		
-		cargarImg("recursos/plano_1.gif");
+		cargarImg("recursos/plano_"+nivel+".gif");
 		
 		MapTile = new int[MapTileN];
 		planoBruto = new int[MapTileN];
@@ -87,11 +85,11 @@ public class RecMapa {
 			WidthMap = imagen.getWidth();
 			HightMap = imagen.getHeight();
 			MapTileN = WidthMap * HightMap;
-			AnchoPantalla = WidthMap * ANCHO_TILE;
-			AltoPantalla = HightMap * ANCHO_TILE;
+			AnchoPantallaMap = WidthMap * ANCHO_TILE;
+			AltoPantallaMap = HightMap * ANCHO_TILE;
 			
 			System.out.println("Ancho: "+WidthMap +" t. | Alto: "+HightMap+" t. | Total cuadros array mapa: "+MapTileN+" t. | "+imagePath);
-			System.out.println("AnchoPantalla: "+AnchoPantalla +" px | AltoPantalla: "+AltoPantalla+" px ");
+			System.out.println("AnchoPantalla: "+AnchoPantallaMap +" px | AltoPantalla: "+AltoPantallaMap+" px ");
 
 			//imagen.getRGB(0, 0);
 			imagen.getRGB(0, 0, WidthMap, HightMap, planoBruto, 0, WidthMap);
