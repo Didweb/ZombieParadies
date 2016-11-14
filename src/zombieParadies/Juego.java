@@ -39,16 +39,17 @@ public class Juego  extends JFrame implements Runnable{
 	private static Pantalla pantalla;
 	private static Controles controles;
 
-	
+	private static boolean verDev = true;
 	
 	private Juego() {
+		
+		pantalla = new Pantalla();
+		controles = new Controles();
 		
 		addKeyListener(controles);
 		setSize(1400,1250);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		pantalla = new Pantalla();
 		
 		setFocusable(true);
 		
@@ -74,9 +75,13 @@ public class Juego  extends JFrame implements Runnable{
 
 
 
-	private void actualizar(){		
+	private void actualizar(){	
 		
+		controles.actualizar();
 		
+		if(controles.dev){
+			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }
+			}
 		
 		aps ++;
 	}
@@ -166,6 +171,18 @@ public class Juego  extends JFrame implements Runnable{
 		Juego juego = new Juego();
 		juego.iniciar();
 
+	}
+
+
+
+	public static boolean isVerDev() {
+		return verDev;
+	}
+
+
+
+	public void setVerDev(boolean verDev) {
+		this.verDev = verDev;
 	}
 
 }

@@ -1,11 +1,9 @@
 package controls;
 
 
-import java.awt.event.InputEvent;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import zombieParadies.Pantalla;
 
@@ -26,6 +24,8 @@ public final class Controles   implements KeyListener{
 	public boolean derecha;
 	public boolean centrar;
 	
+	public boolean dev;
+	
 	public boolean centrado = false;
 	
 	private int velocidad=8;
@@ -45,7 +45,7 @@ public final class Controles   implements KeyListener{
 
 
 
-	public void actualizar(int Rx, int Ry){
+	public void actualizar(){
 
 		
 		salir = teclas[KeyEvent.VK_ESCAPE];
@@ -55,16 +55,8 @@ public final class Controles   implements KeyListener{
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
 		
-
-		
-		this.scrollX = Rx;
-		this.scrollY = Ry;
-
-		
-		
-
+		dev = teclas[KeyEvent.VK_D];
 	
-		
 	}
 
 
@@ -117,12 +109,6 @@ public final class Controles   implements KeyListener{
 
 
 
-	
-	public void mouseMoved(MouseEvent e) {
-	
-		
-		
-	}
 
 
 

@@ -34,8 +34,9 @@ public class Pantalla extends JPanel {
 
 	public void paint(Graphics g){
 		
-		// Mostrar alertas de dev
-		mostrarDev(g);
+		// Mostrar o no mostrar alertas de dev
+		if (Juego.isVerDev()){
+			mostrarDev(g); }
 		
 	}
 
