@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import developer.developer;
-
+import factoryTile.RecMapa;
 
 
 public class Pantalla extends JPanel {
@@ -47,8 +47,16 @@ public class Pantalla extends JPanel {
 		
 		
 		String[] arg={
-					"Nivel: "+Juego.getJuegoNivel(),
-					"Superado: "+Juego.isJuegoNivelSuperado()
+					"Nivel: " + Juego.getJuegoNivel(),
+					"Superado: " + Juego.isJuegoNivelSuperado(),
+					"Nivel Cargado: " +  RecMapa.NivelCargado,
+					"Mapa: " + RecMapa.mapaCargado,
+					"ANCHO_TILE : " + RecMapa.ANCHO_TILE,
+					"Mapa Total Tiles : " + RecMapa.MapTileN,
+					"WidthMap (Tiles): " + RecMapa.WidthMap,
+					"HightMap (Tiles): " + RecMapa.HightMap,
+					"AnchoPantallaMap (px): " + RecMapa.AnchoPantallaMap,
+					"AltoPantallaMap (px): " + RecMapa.AltoPantallaMap,
 					};
 		developer.sacaDato(g,arg);
 	}

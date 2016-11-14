@@ -20,14 +20,14 @@ public class developer extends JPanel{
 		
 		String Cadena = "";
 		int altoCuadro = Juego.ALTO_PANTALLA/12;
-		Font fuenteDev=new Font("Monospaced", Font.PLAIN, 10);
+		Font fuenteDev=new Font("Monospaced", Font.PLAIN, 11);
 		g.setFont(fuenteDev);
 		
 		
 		g.setColor(Color.black);
 		g.fillRect(0, 0, Juego.ANCHO_PANTALLA, altoCuadro);
 		
-		g.setColor(Color.white);
+		g.setColor(Color.gray);
 
 		int salto = 20;
 		int columna = 10;
@@ -59,7 +59,7 @@ public class developer extends JPanel{
 			}
 		
 		}
-		return (valor*7);	
+		return (valor*7)+10;	
 		
 	}
 	

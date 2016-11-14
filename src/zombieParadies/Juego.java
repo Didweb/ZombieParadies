@@ -6,8 +6,10 @@ package zombieParadies;
 import javax.swing.JFrame;
 
 import zombieParadies.Pantalla;
+import zombieParadies.Niveles;
 import controls.Controles;
 import factoryTile.RecMapa;
+
 
 
 
@@ -20,7 +22,7 @@ public class Juego  extends JFrame implements Runnable{
     private static final long serialVersionUID = 2997131868080903015L;
     
 	private static boolean juegoActivo = false;
-	private static int juegoNivel;
+	private static int juegoNivel = 0;
 	private static boolean juegoNivelSuperado = false;
 	
 	public static final int ANCHO_PANTALLA = 1400;
@@ -64,8 +66,7 @@ public class Juego  extends JFrame implements Runnable{
 	private synchronized void iniciar(){
 		
 		juegoActivo = true;
-		juegoNivel = 1;
-		RecMapa.DataPlanos(juegoNivel);
+		Niveles.servidorDeNiveles();
 
 		thread = new Thread(this, "Graficos");
 		thread.start();
@@ -82,6 +83,10 @@ public class Juego  extends JFrame implements Runnable{
 		if(controles.dev){
 			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }
 			}
+		
+		if(juegoNivelSuperado){
+			Niveles.servidorDeNiveles(juegoNivel);
+		}
 		
 		aps ++;
 	}

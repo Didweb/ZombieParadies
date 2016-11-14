@@ -37,6 +37,9 @@ public class RecMapa {
 	public static int AnchoPantallaMap;
 	public static int AltoPantallaMap;
 	
+	public static int NivelCargado = 0;
+	public static String mapaCargado;
+	
 	
 	
 	
@@ -70,7 +73,7 @@ public class RecMapa {
 		
 
 		
-		
+		NivelCargado = nivel;
 		
 		
 		
@@ -81,17 +84,15 @@ public class RecMapa {
 		
 		try {
 			BufferedImage imagen = ImageIO.read(new FileInputStream(imagePath));
-			System.out.println("Ruta cargada:"+imagePath);
+			
+			mapaCargado = imagePath;
 			WidthMap = imagen.getWidth();
 			HightMap = imagen.getHeight();
 			MapTileN = WidthMap * HightMap;
 			AnchoPantallaMap = WidthMap * ANCHO_TILE;
 			AltoPantallaMap = HightMap * ANCHO_TILE;
 			
-			System.out.println("Ancho: "+WidthMap +" t. | Alto: "+HightMap+" t. | Total cuadros array mapa: "+MapTileN+" t. | "+imagePath);
-			System.out.println("AnchoPantalla: "+AnchoPantallaMap +" px | AltoPantalla: "+AltoPantallaMap+" px ");
-
-			//imagen.getRGB(0, 0);
+			
 			imagen.getRGB(0, 0, WidthMap, HightMap, planoBruto, 0, WidthMap);
 			
 			} catch (IOException e) {
