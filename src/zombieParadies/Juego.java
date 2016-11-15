@@ -29,6 +29,7 @@ public class Juego  extends JFrame implements Runnable{
 	public static final int ALTO_PANTALLA = 1250;
 
 
+
 	private static Thread thread;
 
 	private static String  CONTADOR_APS = "";
@@ -44,6 +45,8 @@ public class Juego  extends JFrame implements Runnable{
 	private static boolean verDev = true;
 	
 	private Juego() {
+		
+		
 		
 		pantalla = new Pantalla();
 		controles = new Controles();
@@ -79,6 +82,7 @@ public class Juego  extends JFrame implements Runnable{
 	private void actualizar(){	
 		
 		controles.actualizar();
+		pantalla.actualizar(controles.getScrollX(), controles.getScrollY());
 		
 		if(controles.dev){
 			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }

@@ -14,16 +14,18 @@ public class Pantalla extends JPanel {
     
 	private static final long serialVersionUID = 1L;
 
-	
+	private static int scrollX;
+	private static int scrollY;
 	
 	public Pantalla() {
 	
 	
 	}
 	
-	public void actualizar(){
+	public void actualizar(int scrollX, int scrollY){
 	
-
+		this.scrollX = scrollX;
+		this.scrollY = scrollY;
 		
 	}
 	
@@ -43,7 +45,7 @@ public class Pantalla extends JPanel {
 				} else {
 					lax += 1; }
 			
-			g.drawImage(RecMapa.suelo[lax][lay], lax*RecMapa.ANCHO_TILE, lay*RecMapa.ANCHO_TILE, this);
+			g.drawImage(RecMapa.suelo[lax][lay], (lax*RecMapa.ANCHO_TILE)+scrollY, (lay*RecMapa.ANCHO_TILE)+scrollX, this);
 		}
 		
 		

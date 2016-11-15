@@ -28,7 +28,6 @@ public class RecMapa {
  */
 	
 	private static BufferedImage imagen;
-	private static BufferedImage imagenBruto;
 
 	private static BufferedImage recorte;
 	

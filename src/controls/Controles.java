@@ -56,9 +56,38 @@ public final class Controles   implements KeyListener{
 		centrar = teclas[KeyEvent.VK_C];
 		
 		dev = teclas[KeyEvent.VK_D];
+		
+		accionMovimientos();
+		
+
 	
 	}
 
+	
+	private void accionMovimientos(){
+		
+		if(arriba){
+			System.out.println("Arriba");
+			scrollX +=getVelocidad();
+		}
+		
+		
+		if(abajo){
+			System.out.println("abajo");
+			scrollX -=getVelocidad();
+		}
+		
+		if(derecha){
+			System.out.println("derecha");
+			scrollY -=getVelocidad();
+		}
+		
+		if(izquierda){
+			System.out.println("izquierda");
+			scrollY +=getVelocidad();
+		}
+		
+	}
 
 
 	public void posicionRaton(Pantalla pantalla){
@@ -121,7 +150,25 @@ public final class Controles   implements KeyListener{
 	    return scrollY;
 	}
 
+	
+	public int getScrollY() {
+		return scrollY;
+	}
 
+
+	public void setScrollY(int scrollY) {
+		this.scrollY = scrollY;
+	}
+
+
+	public int getScrollX() {
+		return scrollX;
+	}
+
+
+	public void setScrollX(int scrollX) {
+		this.scrollX = scrollX;
+	}
 
 
 	
