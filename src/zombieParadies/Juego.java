@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import zombieParadies.Pantalla;
 import zombieParadies.Niveles;
 import controls.Controles;
-import factoryTile.RecMapa;
 import actores.Player;
 
 

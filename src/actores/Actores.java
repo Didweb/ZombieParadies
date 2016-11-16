@@ -12,7 +12,42 @@ public class Actores {
 
 	protected BufferedImage imagen = null;
 	
+	protected int tiempoAps = 0;
+	protected int posicionSprit = 0;
 
+	
+	
+	
+	
+	public int getTiempoAps() {
+		return tiempoAps;
+	}
+
+
+	public int getPosicionSprit() {
+		return posicionSprit;
+	}
+
+
+	public void velocidadFrames(){
+		
+		
+		if(tiempoAps == 12){
+			
+			if(posicionSprit == 3){
+				
+				posicionSprit=0;
+				
+				} else {posicionSprit +=1 ;}
+				
+				tiempoAps = 0;
+				
+		} else { tiempoAps +=1; }
+		
+		
+	}
+	
+	
 	protected void cargarImagen(String rutaImagen){
 		
 		

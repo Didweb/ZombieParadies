@@ -26,6 +26,10 @@ public class Pantalla extends JPanel {
 	public int devTilesPintados = 0;
 
 	private int direccion;
+	private int posicionSprit = 0;
+	private int tiempoFotograma = 0;
+
+	
 	
 	
 	
@@ -40,6 +44,11 @@ public class Pantalla extends JPanel {
 		this.scrollX = scrollX;
 		this.scrollY = scrollY;
 		this.direccion = direccion;
+	
+		// Actualizamos los frames de animacion del player
+		player.velocidadFrames();
+		
+
 		
 	}
 	
@@ -52,7 +61,7 @@ public class Pantalla extends JPanel {
 		
 		int lax=0;
 		int lay=0;
-		
+		int[] valoresPlayerAnima = new int[8];
 		int valorPosicionX;
 		int valorPosicionY;
 		devTilesPintados = 0;
@@ -77,9 +86,13 @@ public class Pantalla extends JPanel {
 			}
 			
 			
-			// Mostramos al Plaer
-			g.drawImage(player.getImagen(),  player.getPlayerX(), player.getPlayerY(), player.getPlayerX()+RecMapa.ANCHO_TILE, player.getPlayerY()+RecMapa.ANCHO_TILE,
-					direccion*RecMapa.ANCHO_TILE,0,(direccion*RecMapa.ANCHO_TILE)+RecMapa.ANCHO_TILE,0+RecMapa.ANCHO_TILE, this);
+			// Mostramos al Player
+			valoresPlayerAnima = player.animaPlayer( direccion);
+			g.drawImage(player.getImagen(),  
+					valoresPlayerAnima[0], valoresPlayerAnima[1], valoresPlayerAnima[2], valoresPlayerAnima[3],
+					valoresPlayerAnima[4], valoresPlayerAnima[5], valoresPlayerAnima[6], valoresPlayerAnima[7], 
+					this);
+			
 			
 			if (Juego.isVerDev()){
 			developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
@@ -115,7 +128,9 @@ public class Pantalla extends JPanel {
 					"AnchoPantallaMap (px): " + RecMapa.AnchoPantallaMap,
 					"AltoPantallaMap (px): " + RecMapa.AltoPantallaMap,
 					"Tiles Pintados: " + devTilesPintados,
-					"Dirección: " + direccion
+					"Dirección: " + direccion,
+					"posicionSprit: " + player.getPosicionSprit(),
+					"tiempoFotograma: " + player.getTiempoAps()
 					};
 		developer.sacaDato(g,arg);
 		

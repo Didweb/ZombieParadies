@@ -1,12 +1,12 @@
 package actores;
 
 
-
 import java.awt.image.BufferedImage;
 
+import factoryTile.RecMapa;
 import zombieParadies.Juego;
 
-public class Player  extends Actores{
+public class Player  extends Actores {
 
 	
 	
@@ -15,7 +15,7 @@ public class Player  extends Actores{
 	private int playerX = Juego.ANCHO_PANTALLA/2;
 	private int playerY = Juego.ALTO_PANTALLA/2;
 	
-	
+	private int[] valoresImagenPlayer = new int[8];
 	
 
 	
@@ -25,6 +25,22 @@ public class Player  extends Actores{
 		
 	}
 
+	
+	public int[] animaPlayer(int direccion){
+		
+		
+		valoresImagenPlayer[0] = playerX;
+		valoresImagenPlayer[1] = playerY;
+		valoresImagenPlayer[2] = playerX+RecMapa.ANCHO_TILE;
+        valoresImagenPlayer[3] = playerY+RecMapa.ANCHO_TILE;
+        valoresImagenPlayer[4] = direccion*RecMapa.ANCHO_TILE;
+        valoresImagenPlayer[5] = (posicionSprit*RecMapa.ANCHO_TILE);
+        valoresImagenPlayer[6] = (direccion*RecMapa.ANCHO_TILE)+RecMapa.ANCHO_TILE;
+        valoresImagenPlayer[7] = (posicionSprit*RecMapa.ANCHO_TILE)+RecMapa.ANCHO_TILE;
+        
+        return valoresImagenPlayer;
+			
+	}
 	
 	
 	public void animarPlayer(){
