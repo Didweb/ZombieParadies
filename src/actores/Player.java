@@ -16,16 +16,21 @@ public class Player  extends Actores{
 	private int playerY = Juego.ALTO_PANTALLA/2;
 	
 	
+	
 
 	
 	public Player(){
-		
-	
 		
 		cargarImagen("recursos/player.gif");
 		
 	}
 
+	
+	
+	public void animarPlayer(){
+		
+	}
+	
 
 	public BufferedImage getImagen() {
 		return imagen;

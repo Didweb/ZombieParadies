@@ -11,6 +11,7 @@ import developer.developer;
 import factoryTile.RecMapa;
 
 
+
 public class Pantalla extends JPanel {
 
 	
@@ -23,6 +24,8 @@ public class Pantalla extends JPanel {
 	private static Player player;
 	
 	public int devTilesPintados = 0;
+
+	private int direccion;
 	
 	
 	
@@ -32,10 +35,11 @@ public class Pantalla extends JPanel {
 	}
 	
 	
-	public void actualizar(int scrollX, int scrollY){
+	public void actualizar(int scrollX, int scrollY, int direccion){
 	
 		this.scrollX = scrollX;
 		this.scrollY = scrollY;
+		this.direccion = direccion;
 		
 	}
 	
@@ -74,7 +78,8 @@ public class Pantalla extends JPanel {
 			
 			
 			// Mostramos al Plaer
-			g.drawImage(player.getImagen(),  player.getPlayerX(), player.getPlayerY(), this);
+			g.drawImage(player.getImagen(),  player.getPlayerX(), player.getPlayerY(), player.getPlayerX()+RecMapa.ANCHO_TILE, player.getPlayerY()+RecMapa.ANCHO_TILE,
+					direccion*RecMapa.ANCHO_TILE,0,(direccion*RecMapa.ANCHO_TILE)+RecMapa.ANCHO_TILE,0+RecMapa.ANCHO_TILE, this);
 			
 			if (Juego.isVerDev()){
 			developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
@@ -109,7 +114,8 @@ public class Pantalla extends JPanel {
 					"HightMap (Tiles): " + RecMapa.HightMap,
 					"AnchoPantallaMap (px): " + RecMapa.AnchoPantallaMap,
 					"AltoPantallaMap (px): " + RecMapa.AltoPantallaMap,
-					"Tiles Pintados: " + devTilesPintados
+					"Tiles Pintados: " + devTilesPintados,
+					"Dirección: " + direccion
 					};
 		developer.sacaDato(g,arg);
 		

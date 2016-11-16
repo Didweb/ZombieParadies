@@ -86,7 +86,7 @@ public class Juego  extends JFrame implements Runnable{
 	private void actualizar(){	
 		
 		controles.actualizar();
-		pantalla.actualizar(controles.getScrollX(), controles.getScrollY());
+		pantalla.actualizar(controles.getScrollX(), controles.getScrollY(), controles.getDireccion());
 		
 		if(controles.dev){
 			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }

@@ -23,12 +23,15 @@ public final class Controles   implements KeyListener{
 	public boolean izquierda;
 	public boolean derecha;
 	public boolean centrar;
+	public boolean acelera;
 	
 	public boolean dev;
 	
 	public boolean centrado = false;
 	
-	private int velocidad=8;
+	private int velocidad=2;
+	
+	private int direccion = 0;
 	
 	private int actualRatonX;
 	private int actualRatonY;
@@ -54,6 +57,7 @@ public final class Controles   implements KeyListener{
 		izquierda = teclas[KeyEvent.VK_LEFT];
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
+		acelera = teclas[KeyEvent.VK_A];
 		
 		dev = teclas[KeyEvent.VK_D];
 		
@@ -66,27 +70,66 @@ public final class Controles   implements KeyListener{
 	
 	private void accionMovimientos(){
 		
-		if(arriba){
-			System.out.println("Arriba");
-			scrollY +=getVelocidad();
+		
+		int velocidadActual = getVelocidad();
+		if(acelera){
+			velocidadActual +=velocidadActual;
 		}
 		
 		
 		if(abajo){
-			System.out.println("abajo");
-			scrollY -=getVelocidad();
+			scrollY -=velocidadActual;
+			direccion = 0;
 		}
+		
+		
+		if(arriba){
+			scrollY +=velocidadActual;
+			direccion = 1;
+		}
+		
+		
 		
 		if(derecha){
-			System.out.println("derecha");
-			scrollX -=getVelocidad();
+			scrollX -=velocidadActual;
+			direccion = 2;
 		}
+		
+		
 		
 		if(izquierda){
-			System.out.println("izquierda");
-			scrollX +=getVelocidad();
+			scrollX +=velocidadActual;
+			direccion = 3;
 		}
 		
+		if(derecha && arriba){
+			scrollX -=velocidadActual/2;
+			scrollY +=velocidadActual/2;
+			direccion = 4;
+		}
+
+		
+		if(izquierda && arriba){
+			scrollX +=velocidadActual;
+			direccion = 5;
+		}
+		
+		if(izquierda && abajo){
+			scrollX +=velocidadActual;
+			direccion = 6;
+		}
+		
+		if(derecha && abajo){
+			scrollX -=velocidadActual/2;
+			scrollY +=velocidadActual/2;
+			direccion = 7;
+		}
+		
+	}
+
+
+	public int getDireccion() {
+		return direccion;
 	}
 
 
