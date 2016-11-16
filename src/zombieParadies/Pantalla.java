@@ -19,6 +19,8 @@ public class Pantalla extends JPanel {
 	private static int scrollX;
 	private static int scrollY;
 	
+	public int devTilesPintados = 0;
+	
 	public Pantalla() {
 	
 	
@@ -43,7 +45,7 @@ public class Pantalla extends JPanel {
 		
 		int valorPosicionX;
 		int valorPosicionY;
-
+		devTilesPintados = 0;
 		for(int x=0; x < RecMapa.MapTileN; x++){
 			
 			
@@ -57,11 +59,15 @@ public class Pantalla extends JPanel {
 			valorPosicionX = (lax*RecMapa.ANCHO_TILE)+scrollX;
 			valorPosicionY = (lay*RecMapa.ANCHO_TILE)+scrollY;
 			
-			g.drawImage(RecMapa.suelo[lax][lay], valorPosicionX, valorPosicionY, this);
 			
+			
+			if(valorPosicionX>-80 && valorPosicionY>-80 && valorPosicionX<Juego.ANCHO_PANTALLA && valorPosicionY<Juego.ALTO_PANTALLA){
+				g.drawImage(RecMapa.suelo[lax][lay], valorPosicionX, valorPosicionY, this);
+				devTilesPintados +=1;
+			}
 			
 			if (Juego.isVerDev()){
-			developer.miniMapa(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
+			developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
 			
 			
 			if( lax < RecMapa.WidthMap ) {lax += 1;}
@@ -93,6 +99,7 @@ public class Pantalla extends JPanel {
 					"HightMap (Tiles): " + RecMapa.HightMap,
 					"AnchoPantallaMap (px): " + RecMapa.AnchoPantallaMap,
 					"AltoPantallaMap (px): " + RecMapa.AltoPantallaMap,
+					"Tiles Pintados: " + devTilesPintados
 					};
 		developer.sacaDato(g,arg);
 		

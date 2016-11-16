@@ -51,12 +51,13 @@ public class developer extends JPanel{
 	
 	
 	
-	public static void miniMapa(Graphics g,  int lax, int lay, int valorPosicionX, int valorPosicionY, int anchoTile){
+	public static void coordenadasTiles(Graphics g,  int lax, int lay, int valorPosicionX, int valorPosicionY, int anchoTile){
 		
 		g.setColor(Color.gray);
 		g.drawRect(valorPosicionX, valorPosicionY, 64, 64);
 		g.setColor(Color.white);
 		g.drawString("["+lax+"]"+"["+lay+"]", valorPosicionX+10, valorPosicionY+30);
+		g.drawString("["+valorPosicionX+"]"+"["+valorPosicionY+"]", valorPosicionX+10, valorPosicionY+60);
 		
 		
 		
