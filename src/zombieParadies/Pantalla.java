@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import actores.Player;
+import controls.Controles;
 import developer.developer;
 import factoryTile.RecMapa;
 
@@ -30,6 +31,11 @@ public class Pantalla extends JPanel {
 	private int tiempoFotograma = 0;
 	private boolean enMovimiento;
 	
+	private Controles controles;
+
+	private boolean activarDevCoor;
+
+	private boolean activarDev;
 	
 	
 	
@@ -39,13 +45,15 @@ public class Pantalla extends JPanel {
 	}
 	
 	
-	public void actualizar(int scrollX, int scrollY, int direccion, boolean enMovimiento){
+	public void actualizar(Controles controles){
 	
-		this.scrollX = scrollX;
-		this.scrollY = scrollY;
-		this.direccion = direccion;
-		this.enMovimiento = enMovimiento;
-	
+		this.controles = controles;
+		this.scrollX = controles.getScrollX();
+		this.scrollY = controles.getScrollY();
+		this.direccion = controles.getDireccion();
+		this.enMovimiento = controles.isEnMovimiento();
+		this.activarDevCoor = controles.isDevCoor();
+		this.activarDev = controles.isVerDev();
 		// Actualizamos los frames de animacion del player
 		player.velocidadFrames(enMovimiento);
 		
@@ -94,9 +102,9 @@ public class Pantalla extends JPanel {
 					valoresPlayerAnima[4], valoresPlayerAnima[5], valoresPlayerAnima[6], valoresPlayerAnima[7], 
 					this);
 			
-			
-			if (Juego.isVerDev()){
-			developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
+			// Mostrar o no mostrar Dev Coordenadas x y en mapa
+			if (activarDevCoor){
+				developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE); }
 			
 			
 			if( lax < RecMapa.WidthMap ) {lax += 1;}
@@ -105,9 +113,8 @@ public class Pantalla extends JPanel {
 		
 		
 		
-		// Mostrar o no mostrar alertas de dev
-		if (Juego.isVerDev()){
-			mostrarDev(g); }
+		// Mostrar o no mostrar Panel de dev
+		if (activarDev) { mostrarDev(g); }
 		
 	}
 
@@ -122,6 +129,8 @@ public class Pantalla extends JPanel {
 					"Superado: " + Juego.isJuegoNivelSuperado(),
 					"Nivel Cargado: " +  RecMapa.NivelCargado,
 					"Mapa: " + RecMapa.mapaCargado,
+					"[D] Activar verDev: " + controles.isVerDev(),
+					"[X] Activar DevCoor: "+ controles.isDevCoor(),
 					"ANCHO_TILE : " + RecMapa.ANCHO_TILE,
 					"Mapa Total Tiles : " + RecMapa.MapTileN,
 					"WidthMap (Tiles): " + RecMapa.WidthMap,

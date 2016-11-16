@@ -26,6 +26,7 @@ public final class Controles   implements KeyListener{
 	public boolean acelera;
 	
 	public boolean dev;
+	public boolean devCoor;
 	
 	public boolean centrado = false;
 	
@@ -45,7 +46,8 @@ public final class Controles   implements KeyListener{
 	
 	private boolean enMovimiento = false;
 
-	
+	private boolean activarDevCoor = true;
+	private boolean activarDev = true;
 
 
 
@@ -67,7 +69,7 @@ public final class Controles   implements KeyListener{
 		acelera = teclas[KeyEvent.VK_A];
 		
 		dev = teclas[KeyEvent.VK_D];
-		
+		devCoor = teclas[KeyEvent.VK_X];
 		accionMovimientos();
 		
 
@@ -75,6 +77,9 @@ public final class Controles   implements KeyListener{
 	}
 
 	
+
+
+
 	private void accionMovimientos(){
 		
 		
@@ -133,6 +138,14 @@ public final class Controles   implements KeyListener{
 		if(arriba || abajo || izquierda || derecha){
 			enMovimiento = true;
 		}  else { enMovimiento = false; }
+		
+		if(dev){
+			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }
+		}
+		
+		if(devCoor){
+			if(isDevCoor()) { setDevCoor(false); } else { setDevCoor(true); }
+		}
 		
 	}
 
@@ -223,7 +236,25 @@ public final class Controles   implements KeyListener{
 	}
 
 
+	public  boolean isVerDev() {
+		return activarDev;
+	}
+
+
+
+	public void setVerDev(boolean verDev) {
+		this.activarDev = verDev;
+	}
+
 	
+	public boolean isDevCoor() {
+		return activarDevCoor;
+	}
+
+
+	public void setDevCoor(boolean devCoor) {
+		this.activarDevCoor = devCoor;
+	}
 
 	
 

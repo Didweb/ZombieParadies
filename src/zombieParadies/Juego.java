@@ -85,11 +85,9 @@ public class Juego  extends JFrame implements Runnable{
 	private void actualizar(){	
 		
 		controles.actualizar();
-		pantalla.actualizar(controles.getScrollX(), controles.getScrollY(), controles.getDireccion(), controles.isEnMovimiento());
+		pantalla.actualizar(controles);
 		
-		if(controles.dev){
-			if(isVerDev()) { setVerDev(false); } else { setVerDev(true); }
-			}
+	
 		
 		if(juegoNivelSuperado){
 			Niveles.servidorDeNiveles(juegoNivel);
@@ -187,14 +185,5 @@ public class Juego  extends JFrame implements Runnable{
 
 
 
-	public static boolean isVerDev() {
-		return verDev;
-	}
-
-
-
-	public void setVerDev(boolean verDev) {
-		this.verDev = verDev;
-	}
 
 }
