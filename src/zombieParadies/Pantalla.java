@@ -28,7 +28,7 @@ public class Pantalla extends JPanel {
 	private int direccion;
 	private int posicionSprit = 0;
 	private int tiempoFotograma = 0;
-
+	private boolean enMovimiento;
 	
 	
 	
@@ -39,14 +39,15 @@ public class Pantalla extends JPanel {
 	}
 	
 	
-	public void actualizar(int scrollX, int scrollY, int direccion){
+	public void actualizar(int scrollX, int scrollY, int direccion, boolean enMovimiento){
 	
 		this.scrollX = scrollX;
 		this.scrollY = scrollY;
 		this.direccion = direccion;
+		this.enMovimiento = enMovimiento;
 	
 		// Actualizamos los frames de animacion del player
-		player.velocidadFrames();
+		player.velocidadFrames(enMovimiento);
 		
 
 		
@@ -87,7 +88,7 @@ public class Pantalla extends JPanel {
 			
 			
 			// Mostramos al Player
-			valoresPlayerAnima = player.animaPlayer( direccion);
+			valoresPlayerAnima = player.animaPlayer(direccion);
 			g.drawImage(player.getImagen(),  
 					valoresPlayerAnima[0], valoresPlayerAnima[1], valoresPlayerAnima[2], valoresPlayerAnima[3],
 					valoresPlayerAnima[4], valoresPlayerAnima[5], valoresPlayerAnima[6], valoresPlayerAnima[7], 
@@ -130,7 +131,8 @@ public class Pantalla extends JPanel {
 					"Tiles Pintados: " + devTilesPintados,
 					"Dirección: " + direccion,
 					"posicionSprit: " + player.getPosicionSprit(),
-					"tiempoFotograma: " + player.getTiempoAps()
+					"tiempoFotograma: " + player.getTiempoAps(),
+					"EnMovimineto: " + enMovimiento
 					};
 		developer.sacaDato(g,arg);
 		

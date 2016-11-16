@@ -42,10 +42,17 @@ public final class Controles   implements KeyListener{
 
 	private int anteriorRatonX;
 	private int anteriorRatonY;
+	
+	private boolean enMovimiento = false;
 
 	
 
 
+
+
+	public boolean isEnMovimiento() {
+		return enMovimiento;
+	}
 
 
 	public void actualizar(){
@@ -77,53 +84,55 @@ public final class Controles   implements KeyListener{
 		}
 		
 		
-		if(abajo){
+		if(abajo ){
 			scrollY -=velocidadActual;
 			direccion = 0;
+			 
 		}
 		
 		
-		if(arriba){
+		if(arriba ){
 			scrollY +=velocidadActual;
 			direccion = 1;
+			
 		}
 		
 		
 		
-		if(derecha){
+		if(derecha ){
 			scrollX -=velocidadActual;
 			direccion = 2;
+			
 		}
 		
 		
 		
-		if(izquierda){
+		if(izquierda ){
 			scrollX +=velocidadActual;
 			direccion = 3;
+			
 		}
 		
 		if(derecha && arriba){
-			scrollX -=velocidadActual/2;
-			scrollY +=velocidadActual/2;
 			direccion = 4;
 		}
 
 		
 		if(izquierda && arriba){
-			scrollX +=velocidadActual;
 			direccion = 5;
 		}
 		
 		if(izquierda && abajo){
-			scrollX +=velocidadActual;
 			direccion = 6;
 		}
 		
 		if(derecha && abajo){
-			scrollX -=velocidadActual/2;
-			scrollY +=velocidadActual/2;
 			direccion = 7;
 		}
+		
+		if(arriba || abajo || izquierda || derecha){
+			enMovimiento = true;
+		}  else { enMovimiento = false; }
 		
 	}
 

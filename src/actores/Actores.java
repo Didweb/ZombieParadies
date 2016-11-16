@@ -29,21 +29,21 @@ public class Actores {
 	}
 
 
-	public void velocidadFrames(){
+	public void velocidadFrames(boolean enMovimiento){
 		
-		
-		if(tiempoAps == 12){
-			
-			if(posicionSprit == 3){
+		if(enMovimiento){
+			if(tiempoAps == 12){
 				
-				posicionSprit=0;
-				
-				} else {posicionSprit +=1 ;}
-				
-				tiempoAps = 0;
-				
-		} else { tiempoAps +=1; }
-		
+				if(posicionSprit == 3){
+					
+					posicionSprit=0;
+					
+					} else {posicionSprit +=1 ;}
+					
+					tiempoAps = 0;
+					
+			} else { tiempoAps +=1; }
+		}
 		
 	}
 	
