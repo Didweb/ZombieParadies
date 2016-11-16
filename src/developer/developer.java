@@ -50,6 +50,19 @@ public class developer extends JPanel{
 	}
 	
 	
+	
+	public static void miniMapa(Graphics g,  int lax, int lay, int valorPosicionX, int valorPosicionY, int anchoTile){
+		
+		g.setColor(Color.gray);
+		g.drawRect(valorPosicionX, valorPosicionY, 64, 64);
+		g.setColor(Color.white);
+		g.drawString("["+lax+"]"+"["+lay+"]", valorPosicionX+10, valorPosicionY+30);
+		
+		
+		
+	}
+	
+	
 	private static int cadenaMasLarga(String[] cadenas){
 		
 		int valor = 0;

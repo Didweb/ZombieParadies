@@ -68,23 +68,23 @@ public final class Controles   implements KeyListener{
 		
 		if(arriba){
 			System.out.println("Arriba");
-			scrollX +=getVelocidad();
+			scrollY +=getVelocidad();
 		}
 		
 		
 		if(abajo){
 			System.out.println("abajo");
-			scrollX -=getVelocidad();
+			scrollY -=getVelocidad();
 		}
 		
 		if(derecha){
 			System.out.println("derecha");
-			scrollY -=getVelocidad();
+			scrollX -=getVelocidad();
 		}
 		
 		if(izquierda){
 			System.out.println("izquierda");
-			scrollY +=getVelocidad();
+			scrollX +=getVelocidad();
 		}
 		
 	}

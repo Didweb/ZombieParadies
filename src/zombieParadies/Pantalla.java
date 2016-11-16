@@ -1,6 +1,8 @@
 package zombieParadies;
 
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -38,14 +40,32 @@ public class Pantalla extends JPanel {
 		
 		int lax=0;
 		int lay=0;
+		
+		int valorPosicionX;
+		int valorPosicionY;
+
 		for(int x=0; x < RecMapa.MapTileN; x++){
+			
+			
+			
+			
 			if( lax == RecMapa.WidthMap ){
 				lax = 0;
 				lay += 1;
-				} else {
-					lax += 1; }
+				} 
 			
-			g.drawImage(RecMapa.suelo[lax][lay], (lax*RecMapa.ANCHO_TILE)+scrollY, (lay*RecMapa.ANCHO_TILE)+scrollX, this);
+			valorPosicionX = (lax*RecMapa.ANCHO_TILE)+scrollX;
+			valorPosicionY = (lay*RecMapa.ANCHO_TILE)+scrollY;
+			
+			g.drawImage(RecMapa.suelo[lax][lay], valorPosicionX, valorPosicionY, this);
+			
+			
+			if (Juego.isVerDev()){
+			developer.miniMapa(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}
+			
+			
+			if( lax < RecMapa.WidthMap ) {lax += 1;}
+
 		}
 		
 		
@@ -75,6 +95,7 @@ public class Pantalla extends JPanel {
 					"AltoPantallaMap (px): " + RecMapa.AltoPantallaMap,
 					};
 		developer.sacaDato(g,arg);
+		
 	}
 	
 	
