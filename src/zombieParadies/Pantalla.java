@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+import actores.Player;
 import developer.developer;
 import factoryTile.RecMapa;
 
@@ -19,12 +20,17 @@ public class Pantalla extends JPanel {
 	private static int scrollX;
 	private static int scrollY;
 	
+	private static Player player;
+	
 	public int devTilesPintados = 0;
 	
-	public Pantalla() {
 	
 	
+	public Pantalla(Player player) {
+	
+	 this.player = player;
 	}
+	
 	
 	public void actualizar(int scrollX, int scrollY){
 	
@@ -60,11 +66,15 @@ public class Pantalla extends JPanel {
 			valorPosicionY = (lay*RecMapa.ANCHO_TILE)+scrollY;
 			
 			
-			
+			// Pintamos el terreno
 			if(valorPosicionX>-80 && valorPosicionY>-80 && valorPosicionX<Juego.ANCHO_PANTALLA && valorPosicionY<Juego.ALTO_PANTALLA){
 				g.drawImage(RecMapa.suelo[lax][lay], valorPosicionX, valorPosicionY, this);
 				devTilesPintados +=1;
 			}
+			
+			
+			// Mostramos al Plaer
+			g.drawImage(player.getImagen(),  player.getPlayerX(), player.getPlayerY(), this);
 			
 			if (Juego.isVerDev()){
 			developer.coordenadasTiles(g,  lax, lay, valorPosicionX, valorPosicionY, RecMapa.ANCHO_TILE);}

@@ -9,7 +9,7 @@ import zombieParadies.Pantalla;
 import zombieParadies.Niveles;
 import controls.Controles;
 import factoryTile.RecMapa;
-
+import actores.Player;
 
 
 
@@ -41,15 +41,19 @@ public class Juego  extends JFrame implements Runnable{
 
 	private static Pantalla pantalla;
 	private static Controles controles;
+	private static Player player;
 
 	private static boolean verDev = true;
 	
 	private Juego() {
 		
+		player = new Player();
 		
-		
-		pantalla = new Pantalla();
+		pantalla = new Pantalla(player);
 		controles = new Controles();
+		
+		
+		
 		
 		addKeyListener(controles);
 		setSize(1400,1250);
