@@ -10,8 +10,7 @@ import zombieParadies.play;
 public class developer extends JPanel{
 
 	/**
-	 * Control de variable spor pantalla para el 
-	 * Desarrollo.
+	 * Control Vaible for the Developer.
 	 */
 	private static final long serialVersionUID = 1L;
 

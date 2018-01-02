@@ -54,7 +54,7 @@ public class Screen extends JPanel {
 		this.moving = controls.isMoving();
 		this.activDevCoor = controls.isDevCoor();
 		this.activeDev = controls.isVerDev();
-		// Actualizamos los frames de animacion del player
+		// Update Frames Animation Player
 		player.velocityFrames(moving);
 		
 
@@ -88,14 +88,14 @@ public class Screen extends JPanel {
 			valuePositionY = (lay*RecMapa.WIDTH_TILE)+scrollY;
 			
 			
-			// Pintamos el terreno
+			// Draw floor
 			if(valuePositionX>-80 && valuePositionY>-80 && valuePositionX<play.WIDTH_SCREEN && valuePositionY<play.HEIGHT_SCREEN){
 				g.drawImage(RecMapa.floor[lax][lay], valuePositionX, valuePositionY, this);
 				devTilesPinted +=1;
 			}
 			
 			
-			// Mostramos al Player
+			// Draw Player
 			valuePlayerAnimation = player.animaPlayer(direction);
 			g.drawImage(player.getImage(),  
 					valuePlayerAnimation[0], valuePlayerAnimation[1], valuePlayerAnimation[2], valuePlayerAnimation[3],
@@ -113,7 +113,7 @@ public class Screen extends JPanel {
 		
 		
 		
-		// Mostrar o no mostrar Panel de dev
+		// Active or desactiv Control Developer
 		if (activeDev) { showDev(g); }
 		
 	}

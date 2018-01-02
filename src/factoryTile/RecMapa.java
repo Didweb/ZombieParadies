@@ -17,13 +17,8 @@ import javax.imageio.ImageIO;
 
 public class RecMapa {
 /**
- * Esta clase ha de poder ller un archivo de imagen
- * donde estra el plano para poder traducirlo en un 
- * array donde indique el tile necesario para cada cuadro.
- * 
- * Ha de ser flexible para poder adaptarse a cualquier tipo de plano.
- * 
- * 
+ * We take care to read the maps of each map to be 
+ * able to mount the maps.
  * 
  */
 	
@@ -34,7 +29,7 @@ public class RecMapa {
 	
 	public static Image[][] floor;
 	
-	public static int[] MapTile; // Resultado en un array los codigos de los tiles.
+	public static int[] MapTile; // The codes of Tiles 
 	private static  int[] planeInit;
 	
 	public static int WidthMap;
@@ -64,98 +59,98 @@ public class RecMapa {
 			
 			switch(planeInit[i]){
 					
-					// Cesped claro
+					// Clear Grass 
 					case 0xffffffff:
 						MapTile[i] = 0;
 						continue;
 					
-					// Cesped Oscuro
+					// Dark Grass 
 					case 0xff000000:
 						MapTile[i] = 1;
 						continue;
 					
 						
-					// Corte vertical derecha
+					// Vertical cut right
 					case 0xff4e504f:
 						MapTile[i] = 2;
 						continue;
 							
-					// Corte Vertical izquierda
+					// Vertical cut left
 					case 0xff757976:
 						MapTile[i] = 3;
 						continue;
 							
-					// Corte Horizontal arriba
+					// Horizontal cut up
 					case 0xffacb5ae:
 						MapTile[i] = 4;
 						continue;
 							
 							
-					// Corte Horizontal abajo
+					// Horizontal cut down
 					case 0xff9cbfa3:
 						MapTile[i] = 5;
 						continue;
 
-					// Esquina Verde Claro Arriba izquierda
+					// Corner clear Grass up left
 					case 0xff699d74:
 						MapTile[i] = 6;
 						continue;
 							
-					// Esquina Verde Claro Arriba derecha
+					// Corner clear Grass up right
 					case 0xff307c40:
 						MapTile[i] = 7;
 						continue;
 							
-					// Esquina Verde Claro Abajo izquierda
+					// Corner clear Grass up left
 					case 0xff325a3b:
 						MapTile[i] = 8;
 						continue;
 							
-					// Esquina Verde Claro Abajo derecha
+					// Corner clear Grass down right
 					case 0xff374b3b:
 						MapTile[i] = 9;
 						continue;
 
 
 						
-						// Esquina Verde Oscuro Arriba izquierda
+						// Corner dark grass up left
 						case 0xfffffff1:
 							MapTile[i] = 10;
 							continue;
 								
-						// Esquina Verde Oscuro Arriba derecha
+						// Corner dark Grass up right
 						case 0xffffff2:
 							MapTile[i] = 11;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo izquierda
+						// Corner dark Grass down left
 						case 0xffffff3:
 							MapTile[i] = 12;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo derecha
+						// Corner dark Grass down right
 						case 0xffffff4:
 							MapTile[i] = 13;
 							continue;
 						
 						
 						
-						// Esquina Verde Oscuro Arriba izquierda
+						// Corner dark Grass up left
 						case 0xff257025:
 							MapTile[i] = 14;
 							continue;
 								
-						// Esquina Verde Oscuro Arriba derecha
+						// Corner dark Grass up right
 						case 0xff468346:
 							MapTile[i] = 15;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo izquierda
+						// Corner dark Grass down left
 						case 0xff6dac6d:
 							MapTile[i] = 16;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo derecha
+						// Corner dark Grass down right
 						case 0xff93c493:
 							MapTile[i] = 17;
 							continue;
