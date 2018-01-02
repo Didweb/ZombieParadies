@@ -17,13 +17,8 @@ import javax.imageio.ImageIO;
 
 public class RecMapa {
 /**
- * Esta clase ha de poder ller un archivo de imagen
- * donde estra el plano para poder traducirlo en un 
- * array donde indique el tile necesario para cada cuadro.
- * 
- * Ha de ser flexible para poder adaptarse a cualquier tipo de plano.
- * 
- * 
+ * We take care to read the maps of each map to be 
+ * able to mount the maps.
  * 
  */
 	
@@ -32,130 +27,130 @@ public class RecMapa {
 	private static BufferedImage recorte;
 	
 	
-	public static Image[][] suelo;
+	public static Image[][] floor;
 	
-	public static int[] MapTile; // Resultado en un array los codigos de los tiles.
-	private static  int[] planoBruto;
+	public static int[] MapTile; // The codes of Tiles 
+	private static  int[] planeInit;
 	
 	public static int WidthMap;
 	public static int HightMap;
 	public static int MapTileN;
 	
-	public final static int ANCHO_TILE = 64;
+	public final static int WIDTH_TILE = 64;
 	
-	public static int AnchoPantallaMap;
-	public static int AltoPantallaMap;
+	public static int WidthScreenMap;
+	public static int HeightScreenMap;
 	
-	public static int NivelCargado = 0;
-	public static String mapaCargado;
-	
-	
+	public static int LevelLoad = 0;
+	public static String mapLoaded;
 	
 	
-	public static void DataPlanos(int nivel){
+	
+	
+	public static void DataPlane(int level){
 		
 		
-		cargarImg("recursos/plano_"+nivel+".gif");
+		loadImg("resources/plano_"+level+".gif");
 		
 		
 		MapTile = new int[MapTileN];
 		
 		for(int i=0; i<MapTileN; i++){
 			
-			switch(planoBruto[i]){
+			switch(planeInit[i]){
 					
-					// Cesped claro
+					// Clear Grass 
 					case 0xffffffff:
 						MapTile[i] = 0;
 						continue;
 					
-					// Cesped Oscuro
+					// Dark Grass 
 					case 0xff000000:
 						MapTile[i] = 1;
 						continue;
 					
 						
-					// Corte vertical derecha
+					// Vertical cut right
 					case 0xff4e504f:
 						MapTile[i] = 2;
 						continue;
 							
-					// Corte Vertical izquierda
+					// Vertical cut left
 					case 0xff757976:
 						MapTile[i] = 3;
 						continue;
 							
-					// Corte Horizontal arriba
+					// Horizontal cut up
 					case 0xffacb5ae:
 						MapTile[i] = 4;
 						continue;
 							
 							
-					// Corte Horizontal abajo
+					// Horizontal cut down
 					case 0xff9cbfa3:
 						MapTile[i] = 5;
 						continue;
 
-					// Esquina Verde Claro Arriba izquierda
+					// Corner clear Grass up left
 					case 0xff699d74:
 						MapTile[i] = 6;
 						continue;
 							
-					// Esquina Verde Claro Arriba derecha
+					// Corner clear Grass up right
 					case 0xff307c40:
 						MapTile[i] = 7;
 						continue;
 							
-					// Esquina Verde Claro Abajo izquierda
+					// Corner clear Grass up left
 					case 0xff325a3b:
 						MapTile[i] = 8;
 						continue;
 							
-					// Esquina Verde Claro Abajo derecha
+					// Corner clear Grass down right
 					case 0xff374b3b:
 						MapTile[i] = 9;
 						continue;
 
 
 						
-						// Esquina Verde Oscuro Arriba izquierda
+						// Corner dark grass up left
 						case 0xfffffff1:
 							MapTile[i] = 10;
 							continue;
 								
-						// Esquina Verde Oscuro Arriba derecha
+						// Corner dark Grass up right
 						case 0xffffff2:
 							MapTile[i] = 11;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo izquierda
+						// Corner dark Grass down left
 						case 0xffffff3:
 							MapTile[i] = 12;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo derecha
+						// Corner dark Grass down right
 						case 0xffffff4:
 							MapTile[i] = 13;
 							continue;
 						
 						
 						
-						// Esquina Verde Oscuro Arriba izquierda
+						// Corner dark Grass up left
 						case 0xff257025:
 							MapTile[i] = 14;
 							continue;
 								
-						// Esquina Verde Oscuro Arriba derecha
+						// Corner dark Grass up right
 						case 0xff468346:
 							MapTile[i] = 15;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo izquierda
+						// Corner dark Grass down left
 						case 0xff6dac6d:
 							MapTile[i] = 16;
 							continue;
 								
-						// Esquina Verde Oscuro Abajo derecha
+						// Corner dark Grass down right
 						case 0xff93c493:
 							MapTile[i] = 17;
 							continue;
@@ -166,21 +161,21 @@ public class RecMapa {
 			
 		}
 		
-		pintarSuelo(nivel);
+		drawFloor(level);
 
 		
-		NivelCargado = nivel;
+		LevelLoad = level;
 		
 		
 		
 	}
 	
 	
-	private static void pintarSuelo(int nivel){
+	private static void drawFloor(int nivel){
 		
-		suelo = new Image [MapTileN][MapTileN];
+		floor = new Image [MapTileN][MapTileN];
 		
-		 File f = new File("recursos/Tiles_Suelo_"+nivel+".gif");
+		 File f = new File("resources/Tiles_Suelo_"+nivel+".gif");
 		    try {
 		    	imagen = ImageIO.read(f);
 				} catch (IOException e) {
@@ -201,12 +196,12 @@ public class RecMapa {
 						} else {
 							}
 					
-					posX = MapTile[x]*ANCHO_TILE;
-					posY = ((int)(Math.random() * 5)+1)*ANCHO_TILE;
+					posX = MapTile[x]*WIDTH_TILE;
+					posY = ((int)(Math.random() * 5)+1)*WIDTH_TILE;
 
-					recorte = (imagen.getSubimage(posX, posY, ANCHO_TILE, ANCHO_TILE));
+					recorte = (imagen.getSubimage(posX, posY, WIDTH_TILE, WIDTH_TILE));
 				            
-					suelo[lax][lay] = recorte; 
+					floor[lax][lay] = recorte; 
 					lax += 1; 
 				}
 		
@@ -214,25 +209,25 @@ public class RecMapa {
 	}
 	
 	
-	private static void cargarImg(String imagePath){
+	private static void loadImg(String imagePath){
 		
 		try {
 			BufferedImage imagen = ImageIO.read(new FileInputStream(imagePath));
 			
-			mapaCargado = imagePath;
+			mapLoaded = imagePath;
 			WidthMap = imagen.getWidth();
 			HightMap = imagen.getHeight();
 			MapTileN = WidthMap * HightMap;
-			AnchoPantallaMap = WidthMap * ANCHO_TILE;
-			AltoPantallaMap = HightMap * ANCHO_TILE;
+			WidthScreenMap = WidthMap * WIDTH_TILE;
+			HeightScreenMap = HightMap * WIDTH_TILE;
 			
-			planoBruto = new int[MapTileN];
-			imagen.getRGB(0, 0, WidthMap, HightMap, planoBruto, 0, WidthMap);
+			planeInit = new int[MapTileN];
+			imagen.getRGB(0, 0, WidthMap, HightMap, planeInit, 0, WidthMap);
 			
 			} catch (IOException e) {
-				System.out.println(" Imagen no encontrada ");
+				System.out.println(" Image Not Found  ");
 				e.printStackTrace();
-				planoBruto = new int[MapTileN];
+				planeInit = new int[MapTileN];
 			}
 		
 		
