@@ -32,37 +32,37 @@ public class RecMapa {
 	private static BufferedImage recorte;
 	
 	
-	public static Image[][] suelo;
+	public static Image[][] floor;
 	
 	public static int[] MapTile; // Resultado en un array los codigos de los tiles.
-	private static  int[] planoBruto;
+	private static  int[] planeInit;
 	
 	public static int WidthMap;
 	public static int HightMap;
 	public static int MapTileN;
 	
-	public final static int ANCHO_TILE = 64;
+	public final static int WIDTH_TILE = 64;
 	
-	public static int AnchoPantallaMap;
-	public static int AltoPantallaMap;
+	public static int WidthScreenMap;
+	public static int HeightScreenMap;
 	
-	public static int NivelCargado = 0;
-	public static String mapaCargado;
-	
-	
+	public static int LevelLoad = 0;
+	public static String mapLoaded;
 	
 	
-	public static void DataPlanos(int nivel){
+	
+	
+	public static void DataPlane(int level){
 		
 		
-		cargarImg("recursos/plano_"+nivel+".gif");
+		loadImg("resources/plano_"+level+".gif");
 		
 		
 		MapTile = new int[MapTileN];
 		
 		for(int i=0; i<MapTileN; i++){
 			
-			switch(planoBruto[i]){
+			switch(planeInit[i]){
 					
 					// Cesped claro
 					case 0xffffffff:
@@ -166,21 +166,21 @@ public class RecMapa {
 			
 		}
 		
-		pintarSuelo(nivel);
+		drawFloor(level);
 
 		
-		NivelCargado = nivel;
+		LevelLoad = level;
 		
 		
 		
 	}
 	
 	
-	private static void pintarSuelo(int nivel){
+	private static void drawFloor(int nivel){
 		
-		suelo = new Image [MapTileN][MapTileN];
+		floor = new Image [MapTileN][MapTileN];
 		
-		 File f = new File("recursos/Tiles_Suelo_"+nivel+".gif");
+		 File f = new File("resources/Tiles_Suelo_"+nivel+".gif");
 		    try {
 		    	imagen = ImageIO.read(f);
 				} catch (IOException e) {
@@ -201,12 +201,12 @@ public class RecMapa {
 						} else {
 							}
 					
-					posX = MapTile[x]*ANCHO_TILE;
-					posY = ((int)(Math.random() * 5)+1)*ANCHO_TILE;
+					posX = MapTile[x]*WIDTH_TILE;
+					posY = ((int)(Math.random() * 5)+1)*WIDTH_TILE;
 
-					recorte = (imagen.getSubimage(posX, posY, ANCHO_TILE, ANCHO_TILE));
+					recorte = (imagen.getSubimage(posX, posY, WIDTH_TILE, WIDTH_TILE));
 				            
-					suelo[lax][lay] = recorte; 
+					floor[lax][lay] = recorte; 
 					lax += 1; 
 				}
 		
@@ -214,25 +214,25 @@ public class RecMapa {
 	}
 	
 	
-	private static void cargarImg(String imagePath){
+	private static void loadImg(String imagePath){
 		
 		try {
 			BufferedImage imagen = ImageIO.read(new FileInputStream(imagePath));
 			
-			mapaCargado = imagePath;
+			mapLoaded = imagePath;
 			WidthMap = imagen.getWidth();
 			HightMap = imagen.getHeight();
 			MapTileN = WidthMap * HightMap;
-			AnchoPantallaMap = WidthMap * ANCHO_TILE;
-			AltoPantallaMap = HightMap * ANCHO_TILE;
+			WidthScreenMap = WidthMap * WIDTH_TILE;
+			HeightScreenMap = HightMap * WIDTH_TILE;
 			
-			planoBruto = new int[MapTileN];
-			imagen.getRGB(0, 0, WidthMap, HightMap, planoBruto, 0, WidthMap);
+			planeInit = new int[MapTileN];
+			imagen.getRGB(0, 0, WidthMap, HightMap, planeInit, 0, WidthMap);
 			
 			} catch (IOException e) {
-				System.out.println(" Imagen no encontrada ");
+				System.out.println(" Image Not Found  ");
 				e.printStackTrace();
-				planoBruto = new int[MapTileN];
+				planeInit = new int[MapTileN];
 			}
 		
 		
